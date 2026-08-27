@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "io.github.herve-coulon/qotien-mcp",
+  "description": "Sourced, dated calculation API for French personal taxation (income tax, IFI, capital gains, PER, CEHR/CDHR) and retirement (pension by scheme across 30+ funds, gross→net). Every response carries confidence, legal sources and fiscal year.",
+  "status": "active",
+  "version": "0.1.0",
+  "websiteUrl": "https://qotien.fr",
+  "repository": {
+    "url": "https://github.com/herve-coulon/qotien-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://app.qotien.fr/api/fiscal/v1/mcp"
+    }
+  ]
+}

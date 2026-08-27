@@ -1,0 +1,19 @@
+# Smithery configuration for a REMOTE, self-hosted MCP server.
+#
+# ⚠️ Verify the current schema at https://smithery.ai/docs — Smithery's config format
+# has evolved, and for a server you ALREADY host (as here) the most reliable path is often
+# their web UI: "Add Server" → paste the remote URL below. This file is the declarative
+# equivalent; adjust field names to match Smithery's current schema if needed.
+
+# This MCP is not built or deployed by Smithery — it is a remote Streamable HTTP endpoint
+# that we host. Smithery only needs to connect to it.
+startCommand:
+  type: http
+  # The hosted MCP endpoint (JSON-RPC 2.0 over HTTP POST; GET serves a keepalive SSE stream).
+  url: https://app.qotien.fr/api/fiscal/v1/mcp
+
+# No configuration/secrets required from the user — the API is public and unauthenticated.
+configSchema:
+  type: object
+  properties: {}
+  additionalProperties: false
