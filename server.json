@@ -1,18 +1,33 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
   "name": "io.github.herve-coulon/tax-retirement",
-  "description": "Dated, sourced calculation API for French personal tax (income tax, IFI, PER, CEHR) and retirement.",
+  "description": "Calcul fiscal (IR, IFI, PER, plus-value) et retraite français — 32 régimes, sourcé et daté.",
   "status": "active",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "websiteUrl": "https://qotien.fr",
   "repository": {
     "url": "https://github.com/herve-coulon/qotien-mcp",
     "source": "github"
   },
   "remotes": [
-    {
-      "type": "streamable-http",
-      "url": "https://app.qotien.fr/api/fiscal/v1/mcp"
+    { "type": "streamable-http", "url": "https://app.qotien.fr/api/fiscal/v1/mcp" }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "title": "Qotien — Fiscal & Retraite FR",
+      "summary": "API de calcul fiscal et retraite français, millésime 2026, sourcée (CGI/BOFiP) et datée. Chaque réponse porte son niveau de confiance : fiable / estimé / partiel / non calculable.",
+      "capabilities": ["impôt sur le revenu", "TMI", "IFI", "PER (plafond & gain)", "CEHR / CDHR", "plus-value immobilière", "retraite (32 régimes)"],
+      "coverage": "France — millésime fiscal 2026",
+      "confidence_model": "fiable | estimé | partiel | non calculable (par réponse)",
+      "payment": "API payante x402 v2 (USDC sur Base) ; évaluation via clé d'essai nominative",
+      "pricing": { "protocole": "0", "bareme": "0,05 USD", "etude": "0,25 USD", "optimiseur": "1,00 USD" },
+      "links": {
+        "developers": "https://qotien.fr/developpeurs",
+        "sources": "https://qotien.fr/sources",
+        "manifest": "https://app.qotien.fr/api/fiscal/v1/manifest",
+        "openapi": "https://app.qotien.fr/openapi.json"
+      },
+      "contact": "contact@qotien.fr"
     }
-  ]
+  }
 }
