@@ -3,7 +3,7 @@
   "name": "io.github.herve-coulon/tax-retirement",
   "description": "Calcul fiscal (IR, IFI, PER, plus-value) et retraite français — 32 régimes, sourcé et daté.",
   "status": "active",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "websiteUrl": "https://qotien.fr",
   "repository": {
     "url": "https://github.com/herve-coulon/qotien-mcp",

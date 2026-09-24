@@ -31,6 +31,12 @@ Set `name` accordingly before submitting.
 - **Smithery** (`smithery.ai`): the reliable path for an already-hosted remote server is the web UI — **Add Server → paste `https://app.qotien.fr/api/fiscal/v1/mcp`**. `smithery.yaml` is included as the declarative equivalent (verify its schema at smithery.ai/docs).
 - **mcp.so · Glama · PulseMCP**: community directories — submit the repo URL or the endpoint via their forms; several also crawl public GitHub repos, so step 1 helps here too.
 
+## 3bis. Keep the listing in sync
+
+- **`server.json` here must stay byte-identical to `docs/mcp/server.json` in the main Qotien repo** — that file is the one `mcp-publisher` publishes. Bump the version there, publish, then copy it here (drift seen on 24/09: registry 0.1.2, private copy 0.1.1, this repo 0.1.0).
+- **`glama.json`** declares the Glama maintainer (`maintainers` is the only field of Glama's schema).
+- **CI** (`.github/workflows/check.yml` → `scripts/check-endpoint.mjs`) checks this metadata and the live endpoint on every push and daily. It also fails if the README's tool count no longer matches `tools/list` — update the README when tools are added.
+
 ## 4. Before you distribute widely — write the kill/continue
 
 Fix a verifiable threshold so you don't read noise as signal, e.g.:

@@ -1,0 +1,25 @@
+name: check
+
+# Validates this repo's metadata AND the live hosted MCP endpoint it describes.
+# Daily schedule = uptime probe: a red run means the public endpoint or its catalog drifted.
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  endpoint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Metadata + live MCP endpoint (initialize, tools/list, free tier, x402 on paid tools)
+        run: node scripts/check-endpoint.mjs
