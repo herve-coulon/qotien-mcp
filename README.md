@@ -18,7 +18,7 @@ Add it to any MCP client that supports a remote Streamable HTTP server, pointing
 
 A general LLM (or a code interpreter) *can* do arithmetic, but it does **not** reliably know the current, exact French rules — the 2026 income-tax brackets and décote thresholds, the value of an Agirc-Arrco or CARMF pension point, the reversion rate of each fund. It will produce a confident, wrong number. Qotien is **up to date, sourced, and re-verified against primary sources at every release** — the value where a tax or pension error is unacceptable (fintech, insurtech, advisory tools, wealth-management software).
 
-## Tools — 2 domains, 10 tools
+## Tools — 2 domains, 14 tools
 
 ### Fiscal (income tax & wealth) — deterministic, `confiance: fiable`
 - `fiscal_impot_revenu` — income tax (progressive brackets, family quotient, décote)
@@ -33,6 +33,12 @@ A general LLM (or a code interpreter) *can* do arithmetic, but it does **not** r
 - `retraite_pension_totale` (`fiable`) — consolidated multi-scheme pension (the full career statement in one call), gross→net
 - `retraite_regimes` (`fiable`) — discovery: the computable schemes
 - `retraite_estimation` (`estime`/`partiel`/`non_calculable`) — approximate pension from partial data, with a range and a confidence level
+
+### Retirement optimization — end-of-career levers
+- `retraite_optimisation` (`estime`) — ranked menu of levers (buyback, parental surcote, phased retirement, optimal age, cumul, SAM, PER) with gain/ROI/confidence
+- `retraite_rachat` (`fiable`) — trimester buyback (VPLR): cost, net-of-tax, gain, ROI
+- `retraite_surcote_parentale` (`estime`) — parental surcote (+1.25%/qtr, max 5%)
+- `retraite_progressive` (`estime`) — phased retirement (pension fraction + part-time)
 
 ## Response contract
 
