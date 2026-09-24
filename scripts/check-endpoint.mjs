@@ -5,7 +5,8 @@
 // What it proves, without ever paying or storing anything:
 //   1. server.json / glama.json are valid and point at the documented endpoint;
 //   2. initialize answers (protocol version, serverInfo, instructions);
-//   3. tools/list is free and exposes the documented catalog (count matches the README);
+//   3. tools/list is free and exposes the documented catalog (count AND names match the README,
+//      both ways — the README list is hand-written, the live catalog is the source of truth);
 //   4. the two free tools (qotien_capacites, referentiel_versions) answer without payment;
 //   5. a paid tool without payment gets HTTP 402 with x402 terms — never a free result.
 import { readFileSync } from 'node:fs';
@@ -46,6 +47,13 @@ const list = await rpc('tools/list', null, 2);
 const tools = list.body?.result?.tools || [];
 check(list.status === 200 && tools.length > 0, 'tools/list is free and answers', `HTTP ${list.status}`);
 check(tools.length === documented, `catalog matches the README (${documented} tools)`, `live: ${tools.length}`);
+// Drift guard: the README tool list is hand-written; the live catalog is the source of truth.
+const liveNames = new Set(tools.map((x) => x.name));
+const missingInReadme = [...liveNames].filter((n) => !readme.includes('`' + n + '`') && !readme.includes(n + '`'));
+check(missingInReadme.length === 0, 'every live tool is documented in the README', missingInReadme.join(', '));
+const readmeNames = [...new Set(readme.match(/\b(?:fiscal|retraite|simulateurs|referentiel|qotien)_[a-z0-9_]+\b(?!\.)/g) || [])];
+const staleInReadme = readmeNames.filter((n) => !liveNames.has(n));
+check(staleInReadme.length === 0, 'the README names no tool that the server no longer exposes', staleInReadme.join(', '));
 
 for (const name of ['qotien_capacites', 'referentiel_versions']) {
   const r = await rpc('tools/call', { name, arguments: {} }, 3);
