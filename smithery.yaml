@@ -12,7 +12,8 @@ startCommand:
   # The hosted MCP endpoint (JSON-RPC 2.0 over HTTP POST; GET serves a keepalive SSE stream).
   url: https://app.qotien.fr/api/fiscal/v1/mcp
 
-# No configuration/secrets required from the user — the API is public and unauthenticated.
+# No stored secret/API key — the endpoint is paid per call via x402 (USDC on Base), settled
+# at call time; two discovery tools are free. Nothing to configure in Smithery.
 configSchema:
   type: object
   properties: {}

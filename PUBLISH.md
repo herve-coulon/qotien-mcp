@@ -1,8 +1,9 @@
 # How to publish this repo and list the MCP
 
 > This folder is the **ready-to-push content** of a public GitHub repo `qotien-mcp`. It contains
-> only a description of a *hosted* MCP endpoint (no server code, no secrets). Everything below is
-> an **outward action** (your GitHub / accounts) — the technical side (endpoint, SSE, sitemap) is done.
+> only a description of a *hosted* MCP endpoint (no server code, no secrets). The endpoint is
+> **paid per call via x402** (USDC on Base); two discovery tools are free. Everything below is
+> an **outward action** (your GitHub / accounts) — the technical side (endpoint, SSE, x402, sitemap) is done.
 
 ## 1. Create and push the public repo
 
