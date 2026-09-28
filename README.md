@@ -23,7 +23,7 @@ Two rules the engine never breaks:
 - **A figure never travels alone** — every fact comes with its fiscal year, its legal sources, and a confidence level.
 - **A calculation, not a guess** — when a rule or input is missing, the tool returns `non_calculable` (an honest refusal), never an invented number and never an "average" rate.
 
-## Tools — 4 domains, 35 tools
+## Tools — 4 domains, 38 tools
 
 MCP tool names are prefixed by domain (`fiscal_*`, `retraite_*`, `simulateurs_*`, `referentiel_*`); the same capabilities are reachable over REST under their bare names (`tmi`, `per_gain`, …). Each tool's tier is shown as `[protocole]` (free) · `[barème]` · `[étude]` · `[optimiseur]` (see Pricing).
 
@@ -35,12 +35,15 @@ MCP tool names are prefixed by domain (`fiscal_*`, `retraite_*`, `simulateurs_*`
 - `fiscal_surtaxe_pv_immobiliere` `[barème]` — real-estate capital-gains surtax
 - `fiscal_per_plafond` `[barème]` — PER deduction ceiling (N-1 PASS for employees, N for self-employed)
 - `fiscal_plus_value_immobiliere` `[étude]` — real-estate capital gain (holding-period abatements)
-- `fiscal_ifi` `[étude]` — real-estate wealth tax (with the 75 % income cap)
+- `fiscal_ifi` `[étude]` — real-estate wealth tax (main residence −30 %; optional 75 % income cap, art. 979, computed on gross income: dividends before the 40 % allowance, flat-tax income included)
+- `fiscal_foncier_regime` `[étude]` — unfurnished rental: micro-foncier vs actual-expense regime (household tax Δ)
+- `fiscal_lmnp_regime` `[étude]` — furnished rental (LMNP): micro-BIC vs actual regime with depreciation (household tax Δ)
+- `fiscal_succession` `[étude]` — inheritance duties per child (art. 777) and estimated saving of an early donation
 - `fiscal_cdhr` `[étude]` — differential contribution on high incomes (20 % floor + décote)
 - `fiscal_per_gain` `[étude]` — **tax saved by a PER contribution: the total Δ (brackets + CEHR/CDHR), never "contribution × marginal rate"**
-- `fiscal_niches_plafond` `[étude]` — tax-reduction cap (art. 200-0 A) on *reductions*, with the excluded items handled
+- `fiscal_niches_plafond` `[étude]` — tax-reduction cap (art. 200-0 A) on *reductions*, with the excluded items handled (donations: 20 % limit on the total, Coluche €2,000 bracket outside it; JEI/JEIR: subscription ceilings by `situation`, 40 % rate for impact companies via `variante: "impact"`, shared €50,000 cap for 2024-2028 via `jei_reductions_anterieures`)
 - `fiscal_flat_tax_vs_bareme` `[étude]` — PFU vs progressive-scale comparison
-- `fiscal_jeanbrun` `[étude]` — Jeanbrun rental-investment reduction (art. 31 I-1° i/j CGI)
+- `fiscal_jeanbrun` `[étude]` — Jeanbrun rental-investment depreciation (art. 31 I-1° i/j CGI); pass `loyers_annuels`, `charges_annuelles`, `interets_annuels` for the real saving (social levies only cut down to a zero net rental income, excess = global-income deficit capped at €10,700), otherwise a flagged theoretical maximum (`hypothese_economie`)
 
 ### Retirement — variable confidence, never a bare figure
 - `retraite_ps_pension` `[barème]` (`fiable`) — pension gross→net (CSG/CRDS/CASA + 1 % health on the complementary part)
