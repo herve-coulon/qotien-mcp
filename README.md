@@ -30,11 +30,11 @@ MCP tool names are prefixed by domain (`fiscal_*`, `retraite_*`, `simulateurs_*`
 ### Fiscal (income tax & wealth) — deterministic, `confiance: fiable`
 - `fiscal_impot_revenu` `[barème]` — income tax (progressive brackets, family quotient, décote)
 - `fiscal_tmi` `[barème]` — marginal tax rate
-- `fiscal_cehr` `[barème]` — exceptional contribution on high incomes
+- `fiscal_cehr` `[barème]` — exceptional contribution on high incomes (optional `rfr_n1` / `rfr_n2` apply the exceptional-income smoothing of art. 223 sexies II-1)
 - `fiscal_prelevements_sociaux` `[barème]` — social-levy rate by income type (17.2 % vs 18.6 %)
 - `fiscal_surtaxe_pv_immobiliere` `[barème]` — real-estate capital-gains surtax
 - `fiscal_per_plafond` `[barème]` — PER deduction ceiling (N-1 PASS for employees, N for self-employed)
-- `fiscal_plus_value_immobiliere` `[étude]` — real-estate capital gain (holding-period abatements)
+- `fiscal_plus_value_immobiliere` `[étude]` — real-estate capital gain (holding-period abatements; `acquisition_gratuite` for inherited or gifted property: actual costs only, no 7.5 % flat allowance)
 - `fiscal_ifi` `[étude]` — real-estate wealth tax (main residence −30 %; optional 75 % income cap, art. 979, computed on gross income: dividends before the 40 % allowance, flat-tax income included)
 - `fiscal_foncier_regime` `[étude]` — unfurnished rental: micro-foncier vs actual-expense regime (household tax Δ)
 - `fiscal_lmnp_regime` `[étude]` — furnished rental (LMNP): micro-BIC vs actual regime with depreciation (household tax Δ)
